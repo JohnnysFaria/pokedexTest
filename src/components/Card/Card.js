@@ -6,14 +6,13 @@ import { Link } from 'react-router-dom';
 const Card = ({ name, props }) => {
   const [pokemonData, setPokemonData] = useState(null);
 
-  const getPokemon = async () => {
-    await api
-      .get(`pokemon/${name}`)
-      .then((res) => setPokemonData(res.data))
-      .catch((err) => console.log(err));
-  };
-
   useEffect(() => {
+    const getPokemon = async () => {
+      await api
+        .get(`pokemon/${name}`)
+        .then((res) => setPokemonData(res.data))
+        .catch((err) => console.log(err));
+    };
     getPokemon();
   }, [name]);
   return (

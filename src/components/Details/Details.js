@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './Details.module.css';
 import api from '../../services/api.js';
-import { getBackground, getTitle } from '../utils/colors';
+import { getBackground } from '../utils/colors';
 
 const Details = () => {
   const params = useParams();
@@ -18,23 +18,24 @@ const Details = () => {
 
   useEffect(() => {
     if (params.id) getPokemon(params.id);
-  }, []);
+  });
 
   return (
     <>
       {pokemonData && (
-        
         <div
-        className= {`${styles.details} container`}
-        style={{ background: getBackground(pokemonData.types[0].type.name) }}
+          className={`${styles.details} container`}
+          style={{ background: getBackground(pokemonData.types[0].type.name) }}
         >
-        <img
-          style={{ width: '100px' }}
-          src={pokemonData.sprites.other['official-artwork'].front_default}
-          alt={pokemonData.name}
-        />
-          <p>{pokemonData.name} Nº{pokemonData.id} </p>
-         
+          <img
+            style={{ width: '100px' }}
+            src={pokemonData.sprites.other['official-artwork'].front_default}
+            alt={pokemonData.name}
+          />
+          <p>
+            {pokemonData.name} Nº{pokemonData.id}{' '}
+          </p>
+
           <p> Height {pokemonData.height}</p>
           <p> Weight {pokemonData.weight} Kg</p>
           <p> Hp {pokemonData.stats[0].base_stat}</p>
